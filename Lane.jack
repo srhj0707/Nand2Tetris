@@ -1,0 +1,77 @@
+class Lane{
+	static int lost;
+	field PlayerCar car1;
+	field int g;
+	constructor Lane new(int k){
+		let g=k;
+		return this;
+	}
+
+	method void vehicles(){
+		var Array arr;
+		var Car c;
+		var int i;
+		let lost=0;
+		let i=0;
+		let arr = Array.new(12);
+		let arr[0] = Car.new(20,20,30,30,10,9);
+		let arr[1] = Car.new(60,100,50,30,10,10);
+		let arr[2] = Car.new(100,150,35,30,10,8);
+		let arr[3] = Car.new(140,60,25,30,10,15);
+		let arr[4] = Car.new(180,120,22,30,10,20);
+		let arr[5] = Car.new(220,220,37,30,10,12);
+		let arr[6] = Car.new(260,40,33,30,10,18);
+		let arr[7] = Car.new(300,130,19,30,10,22);
+		let arr[8] = Car.new(340,170,28,30,10,29);
+		let arr[9] = Car.new(380,70,40,30,10,17);
+		let arr[10] = Car.new(420,190,45,30,10,18);
+		let arr[11] = Car.new(460,90,48,30,10,19);
+		let car1=PlayerCar.new(25,220,21);
+		while(~(lost=1)){
+			let c = arr[i];
+			do c.move();
+			do update();
+			let i=i+1;
+			if(i=12){
+				let i=i-12;
+			}
+		}
+		do Screen.clearScreen();
+		do Output.printString("GAME OVER");
+		
+		return;
+
+	}
+	method void update(){
+		var char key;
+		var int address1,address2;
+		let key = Keyboard.keyPressed();
+		if(key=130){do car1.moveLeft();}
+		if(key=131){do car1.moveUp();}
+		if(key=132){do car1.moveRight();}
+		if(key=133){do car1.moveDown();}
+		while(~(key=0)){let key = Keyboard.keyPressed();}
+		let address1=16384+(32*(car1.gety()-1))+(car1.getx()/16)+1;
+		let address2=16384+(32*(car1.gety()+car1.getsize()+1))+(car1.getx()/16);
+		if((Memory.peek(address1)=(-1))|(Memory.peek(address2)=(-1))){let lost=1;}
+		
+		return;
+	}
+	method void prepare(){
+		do Screen.drawRectangle(0,0,15,255);
+		do Screen.drawRectangle(497,0,511,255);
+		do Screen.drawLine(40+15,0,40+15,255);
+		do Screen.drawLine(80+15,0,80+15,255);
+		do Screen.drawLine(120+15,0,120+15,255);
+		do Screen.drawLine(160+15,0,160+15,255);
+		do Screen.drawLine(200+15,0,200+15,255);
+		do Screen.drawLine(240+15,0,240+15,255);
+		do Screen.drawLine(280+15,0,280+15,255);
+		do Screen.drawLine(320+15,0,320+15,255);
+		do Screen.drawLine(360+15,0,360+15,255);
+		do Screen.drawLine(400+15,0,400+15,255);
+		do Screen.drawLine(440+15,0,440+15,255);
+		do Screen.drawLine(480+15,0,480+15,255);
+		return;
+	}
+}

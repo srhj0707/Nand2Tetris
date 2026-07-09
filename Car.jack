@@ -1,0 +1,41 @@
+class Car{
+	field int x,y,l,w,time,speed;
+	constructor Car new(int a,int b,int len,int wid,int t,int s){
+		let x=a;
+		let y=b;let l=len;let w=wid;let time=t;let speed=s;
+		do draw();
+		return this;
+	}
+	method void draw(){
+		if(y+l<256){
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x,y,x+w,y+l);
+		}else{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x,y,x+w,255);
+			do Screen.drawRectangle(x,0,x+w,y+l-255);
+		}
+		return;
+	}
+	method void erase(){
+		if(y+l<256){
+			do Screen.setColor(false);
+			do Screen.drawRectangle(x,y,x+w,y+l);
+		}else{
+			do Screen.setColor(false);
+			do Screen.drawRectangle(x,y,x+w,255);
+			do Screen.drawRectangle(x,0,x+w,y+l-255);
+		}
+		return;
+	}
+	method void move(){
+		do erase();
+		let y=y+speed;
+		if(y>255){
+			let y=y-256;
+		}
+		do draw();
+		do Sys.wait(time);
+		return;
+	}
+}

@@ -1,0 +1,9 @@
+class Main{
+	function void main(){
+		var Lane game;
+		let game=Lane.new(5);
+		do game.prepare();
+		do game.vehicles();
+		return;
+	}
+}

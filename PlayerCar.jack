@@ -1,0 +1,52 @@
+class PlayerCar{
+	field int x,y,size;
+	constructor PlayerCar new(int a,int b,int s){
+		let x=a;let y=b;let size=s;
+		do Screen.setColor(true);
+		do Screen.drawRectangle(x,y,x+size,y+size);
+		return this;
+	}
+	method int getx(){
+		return x;
+	}
+	method int gety(){
+		return y;
+	}
+	method int getsize(){
+		return size;
+	}
+	method void draw(){
+		do Screen.setColor(true);
+		do Screen.drawRectangle(x,y,x+size,y+size);
+		return;
+	}
+	method void erase(){
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x,y,x+size,y+size);
+		return;
+	}
+	method void moveUp(){
+		do erase();
+		if(y>10){let y=y-10;}
+		do draw();
+		return;
+	}
+	method void moveDown(){
+		do erase();
+		if(y<245){let y=y+10;}
+		do draw();
+		return;
+	}
+	method void moveLeft(){
+		do erase();
+		if(x>25){let x=x-40;}
+		do draw();
+		return;
+	}
+	method void moveRight(){
+		do erase();
+		if(x<465){let x=x+40;}
+		do draw();
+		return;
+	}
+}
